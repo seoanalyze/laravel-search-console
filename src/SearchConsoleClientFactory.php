@@ -93,6 +93,7 @@ class SearchConsoleClientFactory
                 $client->setAuthConfig($config['connections']['oauth_json']['auth_config']);
                 break;
             case 'service_account':
+                $client->setAuthConfig($config['connections']['service_account']['application_credentials']);
                 $client->useApplicationDefaultCredentials();
                 break;
         endswitch;
