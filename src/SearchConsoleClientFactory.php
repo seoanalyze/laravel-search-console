@@ -64,12 +64,12 @@ class SearchConsoleClientFactory
      */
     private static function configureGzip(Google_Client $client, $application_name)
     {
-        $client->setApplicationName($application_name.' (gzip)');
+        $client->setApplicationName($application_name . ' (gzip)');
 
         $options = [];
         $options['base_uri'] = Google_Client::API_BASE_PATH;
         $options['headers'] = [
-            'User-Agent' => $application_name.' (gzip)',
+            'User-Agent' => $application_name . ' (gzip)',
             'Accept-Encoding' => 'gzip',
         ];
 
@@ -87,14 +87,14 @@ class SearchConsoleClientFactory
         switch ($config['auth_type']):
             case 'oauth':
                 $client->setClientId($config['connections']['oauth']['client_id']);
-        $client->setClientSecret($config['connections']['oauth']['client_secret']);
-        break;
-        case 'oauth_json':
+                $client->setClientSecret($config['connections']['oauth']['client_secret']);
+                break;
+            case 'oauth_json':
                 $client->setAuthConfig($config['connections']['oauth_json']['auth_config']);
-        break;
-        case 'service_account':
-                $client->useApplicationDefaultCredentials($config['connections']['service_account']['application_credentials']);
-        break;
+                break;
+            case 'service_account':
+                $client->useApplicationDefaultCredentials();
+                break;
         endswitch;
     }
 }
